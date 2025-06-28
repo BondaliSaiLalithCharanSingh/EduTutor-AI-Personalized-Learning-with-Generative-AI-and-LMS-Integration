@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Quiz Setup</title>
+  <link rel="stylesheet" href="student.css" />
+</head>
+<body>
+  <div class="card">
+    <h2>🎯 Choose Your Quiz</h2>
+    <input type="text" id="name" placeholder="Enter your name" required />
+    <input type="email" id="email" placeholder="Enter your email" required />
+    <input type="text" id="topic" placeholder="Enter topic" required />
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <input type="number" id="numQuestions" class="..." placeholder="10" value="10" />
+    <button id="startBtn">Start Quiz</button>
+  </div>
+
+  <!-- ✅ Make sure quiz.js is linked correctly -->
+  <script src="quiz.js"></script>
+  <!--<script>
+    document.getElementById("startBtn").addEventListener("click", startQuiz);
+  </script>-->
+</body>
+</html>

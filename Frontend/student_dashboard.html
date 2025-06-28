@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="student.css" />
+</head>
+<body>
+  <div class="card">
+    <h2>📊 Your Quiz History</h2>
+    <div id="history"></div>
+  </div>
+
+  <script>
+    const email = localStorage.getItem("user_email");
+
+    fetch("http://127.0.0.1:8000/student_scores/" + email)
+      .then(res => res.json())
+      .then(data => {
+        const history = document.getElementById("history");
+
+        if (!data.results || data.results.length === 0) {
+          history.innerHTML = "<p>No quiz records found.</p>";
+          return;
+        }
+
+        data.results.forEach(q => {
+          const div = document.createElement("div");
+          div.style.marginTop = "15px";
+          div.innerHTML = `
+            <p><strong>Topic:</strong> ${q.topic}</p>
+            <p><strong>Difficulty:</strong> ${q.difficulty}</p>
+            <p><strong>Score:</strong> ${q.score}/10</p>
+            <p><strong>Date:</strong> ${q.date}</p>
+            <hr />
+          `;
+          history.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Educator Dashboard - EduTutor AI</title>
+  <link rel="stylesheet" href="educator.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>🎓 Educator Dashboard</h1>
+    <div id="student-data"></div>
+  </div>
+
+  <script>
+    fetch("http://127.0.0.1:8000/student_scores")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("student-data");
+
+        if (!data.results || data.results.length === 0) {
+          container.innerHTML = "<p>No quiz records available.</p>";
+          return;
+        }
+
+        data.results.forEach(entry => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h2>Student: ${entry.name} (${entry.email})</h2>
+            <p><strong>Topic:</strong> ${entry.topic}</p>
+            <p><strong>Difficulty:</strong> ${entry.difficulty}</p>
+            <p><strong>Score:</strong> ${entry.score}/10</p>
+            <p><strong>Date:</strong> ${entry.date}</p>
+          `;
+          container.appendChild(card);
+        });
+      });
+  </script>
+</body>
+</html>

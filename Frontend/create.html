@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Account</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1>🎓 Create Account</h1>
+    <form onsubmit="register(event)">
+      <label>Email</label>
+      <input type="email" id="email" required />
+      <div id="emailError" class="error-msg"></div>
+
+      <label>Password</label>
+      <input type="password" id="pwd" required />
+      <div id="pwdError" class="error-msg"></div>
+
+      <label>Confirm Password</label>
+      <input type="password" id="cpwd" required />
+      <div id="cpwdError" class="error-msg"></div>
+
+      <label>Role</label>
+      <select id="role">
+        <option value="student">Student</option>
+        <option value="educator">Educator</option>
+      </select>
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <button disabled>Create with Google</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+
+  <script>
+    async function register(e) {
+      e.preventDefault();
+
+      const e1 = document.getElementById("email").value.trim();
+      const p1 = document.getElementById("pwd").value;
+      const p2 = document.getElementById("cpwd").value;
+      const r = document.getElementById("role").value;
+
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("pwdError").textContent = "";
+      document.getElementById("cpwdError").textContent = "";
+
+      let valid = true;
+
+      if (!e1.includes("@")) {
+        document.getElementById("emailError").textContent = "Enter a valid email.";
+        valid = false;
+      }
+
+      if (p1.length < 6) {
+        document.getElementById("pwdError").textContent = "Password must be at least 6 characters.";
+        valid = false;
+      }
+
+      if (p1 !== p2) {
+        document.getElementById("cpwdError").textContent = "Passwords do not match.";
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      try {
+        const res = await fetch("http://localhost:8000/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: e1, password: p1, role: r }),
+        });
+
+        if (res.ok) {
+          // ✅ Store email and role for next pages
+          localStorage.setItem("user_email", e1);
+          localStorage.setItem("user_role", r);
+          window.location.href = "login.html";
+        } else {
+          const msg = await res.json();
+          document.getElementById("emailError").textContent = msg.detail || "Account creation failed.";
+        }
+      } catch (err) {
+        document.getElementById("emailError").textContent = "Server error. Try again later.";
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
