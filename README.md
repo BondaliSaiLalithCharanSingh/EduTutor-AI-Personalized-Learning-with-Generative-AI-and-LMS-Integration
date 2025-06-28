@@ -1,7 +1,7 @@
 # EduTutor-AI-Personalized-Learning-with-Generative-AI-and-LMS-Integration
 EduTutor AI is a next-gen educational platform that empowers students with personalized, AI-driven learning experiences and equips educators with real-time insights into student performance. Built using modern web technologies, LLMs, and vector databases, the platform delivers dynamic quizzes, tailored feedback, and progress tracking — all in one unified system.
 
-💡 Developed as part of a collaborative team project by passionate innovators under the guidance of B. Sai Lalith Charan Singh (Team Lead).
+💡 Developed as part of a collaborative team project by passionate innovators .
 
 🔍 Project Goals
 Simplify access to personalized education using AI.
