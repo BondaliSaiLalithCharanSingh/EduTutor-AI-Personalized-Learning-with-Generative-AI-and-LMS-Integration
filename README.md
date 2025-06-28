@@ -62,10 +62,12 @@ Run backend:
 Run frontend:
 Open frontend/create.html in any browser.
 
-❤️ Acknowledgements
+❤️ Acknowledgements:
+
 Special thanks to our mentors, peers, and reviewers who supported the development process.
 
-✨ Final Note
+✨ Final Note:
+
 EduTutor AI represents more than just a project — it's a collaborative vision to bring intelligent, personalized education to every learner. As a team, we poured our creativity, skills, and dedication into building a solution that is scalable, adaptable, and impactful.
 
 We hope this platform inspires further innovation in the field of EdTech and welcome feedback, contributions, and ideas from the community.
